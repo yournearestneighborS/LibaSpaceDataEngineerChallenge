@@ -1,0 +1,218 @@
+"""Reusable spider for companies using the SmartRecruiters public Posting API."""
+
+from __future__ import annotations
+
+from datetime import datetime, timedelta, timezone
+from typing import Any
+from urllib.parse import urlencode
+
+import scrapy
+from dateutil.parser import isoparse
+
+from jobs.items import JobsItem
+from jobs.libabang import API
+from jobs.locations import Locations
+
+
+class SmartRecruitersBase(scrapy.Spider):
+    """Fetch recent English postings for one SmartRecruiters tenant.
+
+    Subclasses only provide ``name``, ``company_name`` and
+    ``company_identifier``. The list endpoint is paginated and every summary is
+    followed through to the detail endpoint because the list response does not
+    include the complete posting.
+    """
+
+    allowed_domains = ["api.smartrecruiters.com"]
+    api_base_url = "https://api.smartrecruiters.com/v1/companies"
+    company_identifier = ""
+    company_name = ""
+    page_size = 100
+    max_age_days: int | None = 2
+    api = API()
+
+    custom_settings = {
+        "AUTOTHROTTLE_ENABLED": True,
+        "AUTOTHROTTLE_START_DELAY": 0.25,
+        "AUTOTHROTTLE_MAX_DELAY": 5.0,
+        "CONCURRENT_REQUESTS_PER_DOMAIN": 4,
+        "RETRY_TIMES": 3,
+    }
+
+    def __init__(self, *args: Any, max_age_days: str | int | None = None, **kwargs: Any):
+        super().__init__(*args, **kwargs)
+        if max_age_days is not None:
+            normalized = str(max_age_days).strip().lower()
+            self.max_age_days = None if normalized in {"", "none", "all"} else int(normalized)
+
+        if not self.company_identifier:
+            raise ValueError("A SmartRecruiters spider must define company_identifier")
+
+    def start_requests(self):
+        yield self._list_request(offset=0)
+
+    def _list_request(self, offset: int) -> scrapy.Request:
+        query = urlencode(
+            {
+                "limit": self.page_size,
+                "offset": offset,
+                "destination": "PUBLIC",
+                "locationType": "ANY",
+                "language": "en",
+                "q": "",
+            }
+        )
+        url = f"{self.api_base_url}/{self.company_identifier}/postings?{query}"
+        return scrapy.Request(
+            url,
+            callback=self.parse,
+            cb_kwargs={"offset": offset},
+            errback=self.errback_api,
+        )
+
+    def parse(self, response: scrapy.http.Response, offset: int = 0):
+        payload = self._response_json(response)
+        if payload is None:
+            return
+
+        postings = payload.get("content")
+        if not isinstance(postings, list):
+            self.logger.error("SmartRecruiters list response has no content list: %s", response.url)
+            return
+
+        for posting in postings:
+            if not isinstance(posting, dict) or not self._is_recent(posting.get("releasedDate")):
+                continue
+
+            language_code = str((posting.get("language") or {}).get("code", "")).lower()
+            if language_code and not language_code.startswith("en"):
+                continue
+
+            posting_id = posting.get("id") or posting.get("uuid")
+            if not posting_id:
+                self.logger.warning("Skipping a posting without id from %s", response.url)
+                continue
+
+            detail_url = f"{self.api_base_url}/{self.company_identifier}/postings/{posting_id}"
+            yield scrapy.Request(
+                detail_url,
+                callback=self.parse_posting,
+                cb_kwargs={"summary": posting},
+                errback=self.errback_api,
+            )
+
+        total = self._as_nonnegative_int(payload.get("totalFound"), default=offset + len(postings))
+        next_offset = offset + len(postings)
+        if postings and next_offset < total:
+            yield self._list_request(next_offset)
+
+    def parse_posting(self, response: scrapy.http.Response, summary: dict[str, Any]):
+        detail = self._response_json(response)
+        if detail is None:
+            return
+
+        language_code = str((detail.get("language") or summary.get("language") or {}).get("code", "")).lower()
+        if language_code and not language_code.startswith("en"):
+            return
+
+        item = JobsItem()
+        item["company_name"] = self.company_name or self._nested(detail, "company", "name")
+        item["job_title"] = detail.get("name") or summary.get("name") or ""
+        item["job_href"] = self._posting_url(detail, summary)
+        item["job_city_des"] = self._location_text(detail.get("location") or summary.get("location") or {})
+        item["details_job"] = self._job_category(detail, summary)
+
+        if not item["job_title"] or not item["job_href"]:
+            self.logger.warning("Skipping incomplete posting from %s", response.url)
+            return
+
+        if not Locations().if_in_monitor(item["job_city_des"]):
+            return
+
+        if not self.api.analyze(item):
+            return
+
+        yield item
+
+    def _response_json(self, response: scrapy.http.Response) -> dict[str, Any] | None:
+        try:
+            payload = response.json()
+        except (ValueError, TypeError) as exc:
+            self.logger.error("Invalid JSON from %s: %s", response.url, exc)
+            return None
+        if not isinstance(payload, dict):
+            self.logger.error("Expected a JSON object from %s", response.url)
+            return None
+        return payload
+
+    def _is_recent(self, released_date: Any) -> bool:
+        if self.max_age_days is None or not released_date:
+            return True
+        try:
+            released_at = isoparse(str(released_date))
+            if released_at.tzinfo is None:
+                released_at = released_at.replace(tzinfo=timezone.utc)
+        except (TypeError, ValueError, OverflowError):
+            self.logger.warning("Could not parse releasedDate=%r; retaining posting", released_date)
+            return True
+        return released_at >= datetime.now(timezone.utc) - timedelta(days=self.max_age_days)
+
+    @staticmethod
+    def _as_nonnegative_int(value: Any, default: int) -> int:
+        try:
+            return max(0, int(value))
+        except (TypeError, ValueError):
+            return default
+
+    @staticmethod
+    def _nested(payload: dict[str, Any], *keys: str) -> str:
+        value: Any = payload
+        for key in keys:
+            if not isinstance(value, dict):
+                return ""
+            value = value.get(key)
+        return str(value or "").strip()
+
+    def _posting_url(self, detail: dict[str, Any], summary: dict[str, Any]) -> str:
+        for key in ("postingUrl", "applyUrl"):
+            value = str(detail.get(key) or summary.get(key) or "").strip()
+            if value:
+                return value.split("?", 1)[0]
+        posting_id = detail.get("id") or summary.get("id")
+        return (
+            f"https://jobs.smartrecruiters.com/{self.company_identifier}/{posting_id}"
+            if posting_id
+            else ""
+        )
+
+    @staticmethod
+    def _location_text(location: dict[str, Any]) -> str:
+        full_location = str(location.get("fullLocation") or "").strip(" ,")
+        if full_location:
+            return full_location
+
+        components = [
+            str(location.get(key) or "").strip(" ,")
+            for key in ("city", "region", "country")
+        ]
+        location_text = ", ".join(component for component in components if component)
+        if location.get("remote") and "remote" not in location_text.lower():
+            return f"{location_text} (Remote)" if location_text else "Remote"
+        return location_text
+
+    @staticmethod
+    def _job_category(detail: dict[str, Any], summary: dict[str, Any]) -> str:
+        labels: list[str] = []
+        for key in ("function", "department"):
+            value = detail.get(key) or summary.get(key) or {}
+            label = str(value.get("label") or "").strip() if isinstance(value, dict) else ""
+            if label and label not in labels:
+                labels.append(label)
+        return " - ".join(labels)
+
+    def errback_api(self, failure):
+        response = getattr(failure.value, "response", None)
+        status = getattr(response, "status", "unknown")
+        url = getattr(response, "url", getattr(failure.request, "url", "unknown"))
+        self.logger.error("SmartRecruiters API request failed (status=%s): %s", status, url)
+
