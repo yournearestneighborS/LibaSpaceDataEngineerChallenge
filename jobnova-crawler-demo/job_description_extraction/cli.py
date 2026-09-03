@@ -1,0 +1,214 @@
+from __future__ import annotations
+
+import argparse
+import csv
+import json
+import os
+import sys
+from pathlib import Path
+from urllib.request import Request, urlopen
+
+from job_description_extraction.evaluation import aggregate_rows, result_row
+from job_description_extraction.llm import OpenAIJobExtractor
+from job_description_extraction.pipeline import HybridExtractor
+from job_description_extraction.rules import RuleRegistry
+
+
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+
+
+def build_extractor(
+    event_log: Path | None = None,
+    registry_path: Path | None = None,
+) -> HybridExtractor:
+    api_key_available = bool(os.getenv("OPENAI_API_KEY"))
+    low_model = os.getenv("LOW_COST_MODEL", "gpt-5.6-luna")
+    strong_model = os.getenv("STRONG_MODEL", "gpt-5.6-sol")
+    low_llm = OpenAIJobExtractor(low_model) if api_key_available else None
+    strong_llm = OpenAIJobExtractor(strong_model) if api_key_available else None
+    return HybridExtractor(
+        registry=RuleRegistry(
+            registry_path or PROJECT_ROOT / "experiments" / "learned_rules.json"
+        ),
+        low_cost_llm=low_llm,
+        strong_llm=strong_llm,
+        event_log=event_log,
+    )
+
+
+def fetch_html(url: str, timeout: int = 30) -> str:
+    request = Request(
+        url,
+        headers={
+            "User-Agent": "JobNovaTakeHome/1.0 (+job-description-extraction-evaluation)",
+            "Accept": "text/html,application/xhtml+xml",
+            "Accept-Language": "en-US,en;q=0.9",
+        },
+    )
+    with urlopen(request, timeout=timeout) as response:
+        content_type = response.headers.get_content_charset() or "utf-8"
+        return response.read().decode(content_type, errors="replace")
+
+
+def fetch_rendered_html(url: str, timeout: int = 30) -> str:
+    try:
+        from playwright.sync_api import sync_playwright
+    except ImportError as exc:
+        raise RuntimeError("Playwright is required for this JavaScript-rendered page") from exc
+    with sync_playwright() as playwright:
+        browser = playwright.chromium.launch(headless=True)
+        try:
+            page = browser.new_page(locale="en-US")
+            page.goto(url, wait_until="domcontentloaded", timeout=timeout * 1000)
+            page.wait_for_timeout(1500)
+            return page.content()
+        finally:
+            browser.close()
+
+
+def load_page_html(page: dict, manifest_dir: Path) -> str:
+    html_path = page.get("html_path")
+    if html_path:
+        return (manifest_dir / html_path).read_text(encoding="utf-8")
+    if page.get("render"):
+        return fetch_rendered_html(page["url"])
+    return fetch_html(page["url"])
+
+
+def command_extract(args: argparse.Namespace) -> int:
+    raw_html = (
+        Path(args.html).read_text(encoding="utf-8")
+        if args.html
+        else fetch_rendered_html(args.url) if args.render else fetch_html(args.url)
+    )
+    extractor = build_extractor(Path(args.event_log) if args.event_log else None)
+    result = extractor.extract(args.url, raw_html, mode=args.mode)
+    print(json.dumps(result.to_dict(), ensure_ascii=False, indent=2))
+    return 0 if result.successful else 2
+
+
+def command_benchmark(args: argparse.Namespace) -> int:
+    manifest_path = Path(args.manifest).resolve()
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    pages = manifest.get("pages", manifest)
+    modes = [mode.strip() for mode in args.modes.split(",") if mode.strip()]
+    output_dir = Path(args.output_dir)
+    output_dir.mkdir(parents=True, exist_ok=True)
+    prepared_pages: list[tuple[dict, str, str]] = []
+    rows: list[dict] = []
+
+    for page in pages:
+        if not page.get("ground_truth_path") or not page.get("verified"):
+            raise ValueError(
+                f"Ground truth for {page.get('id', page['url'])} must exist and be manually verified"
+            )
+        raw_html = load_page_html(page, manifest_path.parent)
+        truth_path = manifest_path.parent / page["ground_truth_path"]
+        ground_truth = truth_path.read_text(encoding="utf-8")
+        prepared_pages.append((page, raw_html, ground_truth))
+
+    for mode in modes:
+        registry_path = output_dir / f"learned_rules_{mode}.json"
+        if registry_path.exists():
+            raise FileExistsError(
+                f"{registry_path} already exists; use a new empty --output-dir for a fair run"
+            )
+        extractor = build_extractor(
+            output_dir / f"events_{mode}.jsonl",
+            registry_path,
+        )
+        for page, raw_html, ground_truth in prepared_pages:
+            result = extractor.extract(page["url"], raw_html, mode=mode)
+            rows.append(result_row(mode, result, ground_truth))
+
+    _write_csv(output_dir / "page_results.csv", rows)
+    aggregates = aggregate_rows(rows)
+    _write_csv(output_dir / "comparison.csv", aggregates)
+    (output_dir / "comparison.json").write_text(
+        json.dumps(aggregates, indent=2) + "\n", encoding="utf-8"
+    )
+    print(json.dumps(aggregates, indent=2))
+    return 0
+
+
+def command_prepare(args: argparse.Namespace) -> int:
+    manifest_path = Path(args.manifest).resolve()
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    pages = manifest.get("pages", manifest)
+    output_dir = Path(args.output_dir)
+    output_dir.mkdir(parents=True, exist_ok=True)
+    extractor = build_extractor(output_dir / "preparation_events.jsonl")
+    failures: list[str] = []
+    for page in pages:
+        page_id = page.get("id") or str(abs(hash(page["url"])))
+        html_output = output_dir / f"{page_id}.html"
+        candidate_output = output_dir / f"{page_id}.candidate.txt"
+        if html_output.exists() and candidate_output.exists():
+            print(f"Already prepared {page_id}; skipping")
+            continue
+        try:
+            raw_html = load_page_html(page, manifest_path.parent)
+            html_output.write_text(raw_html, encoding="utf-8")
+            result = extractor.extract(page["url"], raw_html, mode="hybrid")
+            candidate_output.write_text(
+                result.description_text + "\n", encoding="utf-8"
+            )
+            print(
+                f"Prepared {page_id}: strategy={result.strategy}, "
+                f"confidence={result.confidence}"
+            )
+        except Exception as exc:
+            failures.append(page_id)
+            print(f"Failed {page_id}: {exc}", file=sys.stderr)
+    print("Review every candidate against its rendered page before setting verified=true.")
+    if failures:
+        print(f"Could not prepare: {', '.join(failures)}", file=sys.stderr)
+        return 1
+    return 0
+
+
+def _write_csv(path: Path, rows: list[dict]) -> None:
+    if not rows:
+        return
+    with path.open("w", encoding="utf-8", newline="") as stream:
+        writer = csv.DictWriter(stream, fieldnames=list(rows[0]))
+        writer.writeheader()
+        writer.writerows(rows)
+
+
+def parser() -> argparse.ArgumentParser:
+    root = argparse.ArgumentParser(description="Hybrid job-description extraction prototype")
+    subparsers = root.add_subparsers(dest="command", required=True)
+
+    extract = subparsers.add_parser("extract", help="Extract one page")
+    extract.add_argument("url")
+    extract.add_argument("--html", help="Read a saved HTML page instead of fetching the URL")
+    extract.add_argument("--render", action="store_true", help="Fetch with headless Chromium")
+    extract.add_argument("--mode", choices=sorted(HybridExtractor.MODES), default="hybrid")
+    extract.add_argument("--event-log")
+    extract.set_defaults(func=command_extract)
+
+    benchmark = subparsers.add_parser("benchmark", help="Run the verified evaluation set")
+    benchmark.add_argument("--manifest", default="experiments/pages.json")
+    benchmark.add_argument("--modes", default="llm_only,template_aware,hybrid")
+    benchmark.add_argument("--output-dir", default="experiments/results")
+    benchmark.set_defaults(func=command_benchmark)
+
+    prepare = subparsers.add_parser("prepare-ground-truth", help="Fetch pages and create review candidates")
+    prepare.add_argument("--manifest", default="experiments/pages.json")
+    prepare.add_argument("--output-dir", default="experiments/ground_truth_review")
+    prepare.set_defaults(func=command_prepare)
+    return root
+
+
+def main() -> int:
+    try:
+        args = parser().parse_args()
+        return args.func(args)
+    except Exception as exc:
+        print(f"error: {exc}", file=sys.stderr)
+        return 1
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

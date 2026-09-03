@@ -1,0 +1,4 @@
+mode,pages,avg_completeness_recall,avg_content_precision,avg_accuracy_f1,avg_contamination_rate,avg_structure_recall,full_extraction_rate,avg_latency_ms,total_cost_usd,cost_per_page_usd,estimated_cost_100k_usd
+hybrid,10,0.7,0.6993,0.6996,0.0007,0.5938,0.4,4.301,0.0,0.0,0.0
+llm_only,10,0.0,0.0,0.0,0.0,0.0,0.0,0.456,0.0,0.0,0.0
+template_aware,10,0.7,0.6993,0.6996,0.0007,0.5938,0.4,4.51,0.0,0.0,0.0

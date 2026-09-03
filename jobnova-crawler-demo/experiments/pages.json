@@ -1,0 +1,88 @@
+{
+  "as_of": "2026-08-31",
+  "notes": "Selected live pages. Ground truth must be prepared and manually verified immediately before the final benchmark because postings can change or expire.",
+  "pages": [
+    {
+      "id": "smartrecruiters_sopra_steria",
+      "ats": "SmartRecruiters",
+      "url": "https://jobs.smartrecruiters.com/SopraSteria1/744000129485310-data-engineer",
+      "ground_truth_path": "ground_truth/smartrecruiters_sopra_steria.txt",
+      "verified": true,
+      "html_path": "ground_truth_review/smartrecruiters_sopra_steria.html"
+    },
+    {
+      "id": "greenhouse_540",
+      "ats": "Greenhouse",
+      "url": "https://job-boards.greenhouse.io/540/jobs/7886211003",
+      "ground_truth_path": "ground_truth/greenhouse_540.txt",
+      "verified": true,
+      "html_path": "ground_truth_review/greenhouse_540.html"
+    },
+    {
+      "id": "greenhouse_sigma",
+      "ats": "Greenhouse",
+      "url": "https://job-boards.greenhouse.io/sigmacomputing/jobs/7809974003",
+      "ground_truth_path": "ground_truth/greenhouse_sigma.txt",
+      "verified": true,
+      "html_path": "ground_truth_review/greenhouse_sigma.html"
+    },
+    {
+      "id": "lever_padsplit",
+      "ats": "Lever",
+      "url": "https://jobs.lever.co/padsplit/a037c79a-6664-4fbb-842c-800c34cb1b68",
+      "ground_truth_path": "ground_truth/lever_padsplit.txt",
+      "verified": true,
+      "html_path": "ground_truth_review/lever_padsplit.html"
+    },
+    {
+      "id": "lever_sep",
+      "ats": "Lever",
+      "url": "https://jobs.lever.co/sep/2eb79283-b3fd-4316-9e93-e80dbebfba05",
+      "ground_truth_path": "ground_truth/lever_sep.txt",
+      "verified": true,
+      "html_path": "ground_truth_review/lever_sep.html"
+    },
+    {
+      "id": "ashby_baseten",
+      "ats": "Ashby",
+      "url": "https://jobs.ashbyhq.com/baseten/c2ba6c50-d282-4478-98e9-668f94facde8",
+      "render": true,
+      "ground_truth_path": "ground_truth/ashby_baseten.txt",
+      "verified": true,
+      "html_path": "ground_truth_review/ashby_baseten.html"
+    },
+    {
+      "id": "workday_booz_allen",
+      "ats": "Workday",
+      "url": "https://bah.wd1.myworkdayjobs.com/en-US/BAH_Jobs/job/Data-Engineer_R0242536",
+      "render": true,
+      "ground_truth_path": "ground_truth/workday_booz_allen.txt",
+      "verified": true,
+      "html_path": "ground_truth_review/workday_booz_allen.html"
+    },
+    {
+      "id": "icims_american_systems",
+      "ats": "iCIMS",
+      "url": "https://careers-americansystems.icims.com/jobs/4391/data-engineer---junior/job?mobile=true&needsRedirect=false",
+      "ground_truth_path": "ground_truth/icims_american_systems.txt",
+      "verified": true,
+      "html_path": "ground_truth_review/icims_american_systems.html"
+    },
+    {
+      "id": "smartrecruiters_delivery_hero",
+      "ats": "SmartRecruiters",
+      "url": "https://jobs.smartrecruiters.com/DeliveryHero/744000132793449-data-engineer-l-tech-foundations-2026-tech-grads-",
+      "ground_truth_path": "ground_truth/smartrecruiters_delivery_hero.txt",
+      "verified": true,
+      "html_path": "ground_truth_review/smartrecruiters_delivery_hero.html"
+    },
+    {
+      "id": "breezy_nuview",
+      "ats": "Breezy",
+      "url": "https://nuview.breezy.hr/p/92e1b573af62-data-engineer",
+      "ground_truth_path": "ground_truth/breezy_nuview.txt",
+      "verified": true,
+      "html_path": "ground_truth_review/breezy_nuview.html"
+    }
+  ]
+}

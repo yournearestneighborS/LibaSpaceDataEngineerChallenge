@@ -1,0 +1,89 @@
+The Role We Need
+
+PadSplit is growing its analytics platform and needs a hands-on Data Engineer to work alongside our existing DE lead. This person will build and maintain ingestion and transformation pipelines across Dagster (or Airflow), dbt, and Snowflake, with supporting work in Python, Airbyte, and AWS. The role combines building new pipelines and data models with providing real coverage on critical paths — especially the daily Postgres → Snowflake → dbt flow and third-party API loads — all shipped through reviewed pull requests rather than one-off scripts.
+
+The Person We Are Looking For
+
+We're looking for a practitioner who thinks natively in dimensions, facts, and slowly changing dimensions — someone who knows when to use a full refresh versus an incremental load and how that choice affects idempotency and backfills. This person writes clear, reviewable PRs and gives equally thoughtful reviews, with attention to scoped diffs, sensible tests, and failure modes. They're comfortable in complex Python data flows and have enough AWS literacy to reason about task roles, buckets, and cross-account access without needing to own all of platform engineering.
+
+Here's What You'll Be Doing Day-to-Day:
+
+- PR-driven shipping: Opening and merging pull requests for new or updated Dagster jobs, assets, schedules, and sensors, plus dbt models, tests, and documentation.
+
+- Infrastructure tweaks: Writing occasional Terraform for secrets, environment variables, or job sizing when a pipeline needs it.
+
+- Pipeline implementation: Building and debugging Python pipelines covering REST/API syncs, large Postgres extracts, Parquet loads, and Snowflake COPY operations.
+
+- Airbyte management: Configuring or troubleshooting Airbyte connections wherever managed sync is the right fit.
+
+- Production monitoring: Watching production runs and investigating failures related to IAM, OOM, Spot instances, or bad watermarks.
+
+- Backfills & catch-ups: Running backfills and incremental catch-ups with a clear story for what landed and why.
+
+- Modeling partnership: Working with analytics and product on dim/fct/x_fct design, incremental strategies, and data quality.
+
+- Code review & runbooks: Participating in code review, release prep, and writing short runbooks so others can operate your pipelines when you're out.
+
+Here's What You'll Need to Be Successful:
+
+- Warehouse fundamentals: Solid grasp of relational databases and warehouse patterns — keys, grain, normalization vs. star schema, and how SCD behavior gets encoded.
+
+- Orchestration experience: Practical, hands-on Dagster (or Airflow) experience — not just writing SQL inside a scheduler UI.
+
+- dbt proficiency: Real experience building and maintaining models, tests, and documentation in dbt.
+
+- Python at scale: Comfort reading and writing Python that moves data at scale across extract, transform, and load steps.
+
+- AWS working knowledge: Practical familiarity with S3, IAM, and ECS/Fargate at a "debug my job" level.
+
+- EL tool familiarity: Experience with Airbyte or similar extract-and-load tools.
+
+- PR discipline: The discipline to write pull requests others can easily review, and to give equally rigorous reviews in return.
+
+- Reliability mindset: A track record of keeping pipelines healthy and modeling consistent across full refresh and incremental paths, without becoming a single point of failure.
+
+The Interview Process:
+
+- Your application will be reviewed for possible next steps by a real human being from the PeopleOps team.
+
+- If you meet eligibility requirements, the next step would be a video interview with a member of the PeopleOps team for about thirty (30) minutes.
+
+- If warranted, the next step would be a video interview with our Principal Data Scientist for forty-five (45) minutes.
+
+- If warranted, the next step would be a video panel interview with key stakeholders at PadSplit for one and a half (1.5) hours.
+
+- If warranted, the next and final step would be a video interview with a key leader in the company for thirty (30) minutes.
+
+- If warranted, we move to offer!
+
+Compensation, Benefits, and Perks:
+
+- Fully remote position - we swear!
+
+- Competitive compensation package including an equity incentive plan and company-wide bonus opportunity
+
+- National medical, dental, and vision healthcare plans
+
+- Company provided life insurance policy
+
+- Optional accidental insurances, FSA, and DCFSA benefits
+
+- Unlimited paid-time (PTO) policy with eleven (11) company-observed holidays
+
+- 401(k) plan
+
+- Twelve (12) weeks of paid time off for both birth and non-birth parents
+
+- The opportunity to do what you love at a company that is at the forefront of solving the affordable housing crisis
+
+$150,000 - $165,000 a year
+
+Compensation is based on the role's scope, national market benchmarks, the person's expertise and experience, and the impact of their contributions to our business goals.
+
+Please note: Although the job posting says it's in Atlanta, Georgia, this is a fully remote position. This is a result of our Applicant Tracking System requiring a location to post the role on LinkedIn.
+
+Notice to Applicants:
+
+PadSplit participates in E-Verify. All new employees are required to complete an I-9 form and be authorized to work in the United States. Employment is contingent upon successful completion of the E-Verify process.
+
+PadSplit is an Equal Opportunity Employer. All qualified applicants will receive consideration for employment without regard to race, color, religion, sex, sexual orientation, gender identity, national origin, disability, or status as a protected veteran.

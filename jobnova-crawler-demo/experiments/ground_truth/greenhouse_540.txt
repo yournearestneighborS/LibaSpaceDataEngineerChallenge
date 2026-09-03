@@ -1,0 +1,107 @@
+540 is seeking a Data Engineer to support a mission-critical federal health data modernization initiative. The team is bringing together data from diverse defense and federal systems to build scalable pipelines, APIs, and data products that improve how critical information is integrated, accessed, and used.
+
+In this role, you’ll work hands-on with complex health and mission data to develop scalable, production-ready capabilities while helping establish reusable patterns for data ingestion, integration, and delivery. Your work will contribute to the technical foundation of a growing data platform ecosystem supporting multiple teams, data products, and mission areas.
+
+Location: Remote within the continental United States. Periodic travel may be required
+
+Citizenship & Clearance Requirement: per client requirements, candidates must be U.S. Citizens with an active DoW Secret (or higher) clearance
+
+Education Requirement: Bachelor’s Degree in Computer Science, Engineering, Data Science, or a related technical field (preferred)
+
+540 Internal Thrive Level: Data Engineer II or III
+
+WHY 540?
+
+540 is a forward-thinking company that the government turns to in order to #getshitdone. We don’t just talk about innovation – we deliver it. We break down barriers, build impactful technology, and solve mission-critical problems.
+
+HOW YOU’LL DRIVE IMPACT
+
+- Design, develop, and maintain scalable, production-ready data pipelines using Spark, Python, and SQL in a Databricks environment
+
+- Integrate and transform diverse health, financial, and operational datasets into reliable, reusable data products
+
+- Develop data models and analytics datasets that support enterprise reporting and operational decision-making
+
+- Build and maintain API-based integrations for ingesting and exchanging data across systems
+
+- Monitor, troubleshoot, and optimize scheduled workflows and production pipelines for performance, reliability, and scalability
+
+- Implement data validation, quality checks, lineage, and governance practices that improve trust in data products
+
+- Contribute to automated testing, code reviews, technical documentation, and reusable engineering patterns
+
+- Collaborate with engineers, architects, analysts, and customer stakeholders to translate data needs into practical technical solutions
+
+REQUIRED SKILLS & EXPERIENCE
+
+- 3+ years of data engineering, software engineering, or related technical experience
+
+- Strong proficiency with Python and SQL
+
+- Experience with Apache Spark or similar distributed data-processing frameworks
+
+- Experience working with Databricks or a similar modern data platform
+
+- Experience building and maintaining production data pipelines and ETL/ELT processes
+
+- Working knowledge of data modeling and transforming raw data into reusable analytics datasets or data products
+
+- Experience integrating or consuming data through REST APIs
+
+- Experience troubleshooting and optimizing data pipelines for performance and reliability
+
+- Familiarity with data validation, quality, governance, security, privacy, and compliance considerations
+
+- Experience with Git-based development workflows and modern software engineering practices
+
+- Comfort working in terminal and command-line environments
+
+- Experience using AI-assisted development tools to accelerate routine engineering tasks, testing, documentation, and debugging
+
+- Strong communication skills and experience working with customers or stakeholders to understand and resolve data needs
+
+- Ability to navigate ambiguity, learn unfamiliar systems, and independently drive assigned work toward resolution
+
+NICE TO HAVE SKILLS & EXPERIENCE
+
+- AWS cloud experience
+
+- Experience working with very large datasets, including datasets containing billions of records
+
+- Experience with Palantir Foundry
+
+- Experience with Advana or similar DoW data environments
+
+- Experience with GitLab, CI/CD pipelines, or automated deployment workflows
+
+- Experience working with federal health, financial, or other regulated and sensitive data
+
+BENEFITS & PERKS
+
+- Flexible PTO + all Federal holidays off
+
+- Health, dental and vision insurance plans
+
+- Flexible Spending Account (FSA)
+
+- 401k with employer match
+
+- Company-sponsored life insurance, short- and long-term disability
+
+- Professional development (training, certifications, conferences)
+
+- Paid cloud developer accounts
+
+- Referral bonuses
+
+- HQ office perks (parking / metro reimbursement, nitro coffee & lunches)
+
+- Annual social events (540 Week, hackathon, charity golf tournament, etc.)
+
+- Access to 540’s Washington Capitals & Nationals tickets
+
+EQUAL EMPLOYMENT OPPORTUNITY (EEO)
+
+540's policy is to provide equal employment opportunity to all employees and applicants for employment and prohibits discrimination and harassment of any type without regard to race, color, religion, age, sex, national origin, disability status, genetics, protected veteran status, sexual orientation, gender identity or expression, or any other characteristic protected by federal, state or local laws.
+
+This policy applies to all terms and conditions of employment, including recruiting, hiring, placement, promotion, termination, layoff, recall, transfer, leaves of absence, compensation and training.

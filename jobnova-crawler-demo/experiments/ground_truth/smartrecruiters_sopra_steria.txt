@@ -1,0 +1,95 @@
+Company Description
+
+Sopra Steria offers tailored, end-to-end corporate technology and software solutions to help clients make bold choices and deliver results. Successfully so! With more than 51.000 colleagues in nearly 30 countries, we rank as Europe’s leading digital solutions provider. Some of the most successful companies in Europe rely on our technology due to our commitment to innovation, collaboration, and value in business development.
+
+Job Description
+
+Join our Data & AI team.
+
+You will become part of a multidisciplinary team where data engineering, architecture, AI, analytics, governance and visualization come together. Together, we help clients get more value out of their data: from setting up the right data foundations to building dashboards, analytics solutions and AI use cases that support better decisions.
+
+As a Data Engineer, will work with modern data technologies to develop and manage end-to-end data solutions, from ingestion and transformation to serving layers. In close collaboration with other data experts (BI consultants, AI engineers, etc.) and client stakeholders, you will translate business and analytics requirements into production-ready, end-to-end data systems.
+
+You will be part of our Data Foundation practice: a team of data engineers and architects, within our Data & AI department. Looking beyond the sleek dashboards and hype-driven AI applications, we make sure that AI and BI initiatives are powered by a reliable and performant back end. Using proven components and best practices, we continuously challenge ourselves to design solutions tailored to our clients’ data needs, ensuring optimal performance, scalability, and maintainability.
+
+Your responsibilities include the following:
+
+- Build high-quality data solutions that create value for our clients.
+
+- Gather business requirements and translate them to technical specifications.
+
+- Design, implement and orchestrate scalable and efficient data pipelines to collect, process, and serve large datasets.
+
+- Contribute to sales proposals and business development initiatives.
+
+- Engage in knowledge-sharing and support more junior colleagues.
+
+- Serve as a subject matter expert for client advisory.
+
+Qualifications
+
+We’re seeking motivated colleagues who are eager to engineer the best solutions for our clients and to be an active member of our team of experts. If you enjoy tackling complex technical problems and meet (most of) the qualifications below, we look forward to your application!
+
+You’ll have knowledge and experience of the following:
+
+- At least 3 years of experience as a Data Engineer or in software engineering in a data context.
+
+- Programming experience with one or more languages, such as Python.
+
+- Knowledge of storage concepts/technologies (RDBs, DWHs, lakehouses, etc.) and distributed computing.
+
+- Experience in designing, building and owning data pipelines (Databricks, dbt, Airflow, ...)
+
+- Experience with at least one cloud provider (Azure, AWS or GCP).
+
+- Experience with incremental and streaming workloads, CDC and SCD.
+
+- Familiar with platform engineering (including CI/CD and IaC automation) in a data mesh-like context.
+
+- The concept of DataOps is embedded in your way of working.
+
+- Familiar with the challenges of BI and AI workloads and applications.
+
+- Experienced in implementing data governance & security (IAM, data quality mgmt, metadata mgmt., ...).
+
+- Aware of currently available technologies and upcoming data trends.
+
+- Ability to translate business requirements into effective technical solutions.
+
+- Able to work autonomously, balance multiple stakeholders, make pragmatic technical decisions and manage work time effectively.
+
+- Strong communicative and interpersonal skills, bridging technical and business audiences while building strong client and team relationships.
+
+- Collaborative and team-oriented, helping our team grow.
+
+- You have a degree in Computer Engineering, Information Technology or related field.
+
+- You are proficient in English and Dutch or French
+
+What we can offer you
+
+At Sopra Steria, you’ll join our Data Foundations Practice within the Data & AI team: a group of experts building modern data platforms that power analytics and AI.
+
+We design scalable, secure and maintainable data pipelines and architectures using best practices and tools like Databricks, Azure, SQL and Snowflake.
+
+You’ll help build the backbone of Data & AI, improving reliability and data quality through automation, testing and monitoring, within a collaborative and fast-learning environment.
+
+As part of Sopra Steria, you’ll also benefit from strong career development opportunities, both locally and internationally, supported by the Sopra Steria Academy and a wider network of more than 51.000 professionals.
+
+Additional Information
+
+We offer a generous employee benefits package that includes:
+
+- A variety of perks, such as mobility options (including a company car), insurance coverage, meal vouchers, eco-cheques, and more.
+
+- Continuous learning opportunities through the Sopra Steria Academy to support your career development.
+
+- The opportunity to connect with fellow Sopra Steria colleagues at various team events.
+
+Our goal is to build high-functioning teams and healthy team environments that inspire and help each other to deliver excellence for each of our customers.
+
+Excited about this job opportunity? Great! We are looking forward to your application!
+
+______
+
+Sopra Steria is an equal opportunity employer. All qualified applicants will be considered for employment without regard to age, ancestry, nationality, color, family or medical leave, gender identity or expression, genetic information, immigration status, marital status, medical condition, national origin, physical or mental disability, political affiliation, protected veteran or military status, race, ethnicity, religion, gender (including pregnancy), sexual orientation or any other characteristic protected by applicable local laws, regulations and ordinances. We foster a work environment that is inclusive and respectful of all differences.

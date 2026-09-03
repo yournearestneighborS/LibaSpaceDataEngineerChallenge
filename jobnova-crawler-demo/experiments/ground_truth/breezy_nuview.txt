@@ -1,0 +1,89 @@
+About NuView Analytics
+
+At NuView Analytics, we help companies accelerate the time to insights from their data. We do this in three ways: data analytics, data diligence, and fractional data science. Our clients are growth-stage companies looking to drive additional value from the data they are sitting on. Through our values of humility, intellectual rigor, and stewardship, we help companies gain a new perspective on their business through their data.
+
+The Role
+
+We're looking for a Data Engineer to join our growing team and help clients build scalable, reliable data infrastructure. This role is remote but candidate must reside in the United States. Initial onboarding will be onsite. You'll work across the modern data stack, designing pipelines, architecting warehouses, and enabling the analytical layer that our clients depend on. This is a high-impact, client-facing role that combines deep technical execution with strategic thinking.
+
+Responsibilities
+
+- Design, build, and maintain scalable data pipelines for clients across industries
+
+- Architect and optimize cloud data warehouse solutions, adapting to each client's stack, which may include Snowflake, BigQuery, Redshift, Microsoft Fabric, or similar platforms
+
+- Lead data integration projects from source system to analytical layer, including scoping, delivery, and handoff
+
+- Work fluidly across a range of modern data tools and platforms as client engagements demand, picking up new technologies quickly and applying best practices regardless of the toolset
+
+- Collaborate with analysts and data scientists to ensure data is clean, reliable, and well-modeled
+
+- Champion data quality, testing, and observability best practices across client engagements
+
+- Produce and maintain clear technical documentation including pipeline architecture, data dictionaries, lineage maps, and runbooks so clients can understand and own their infrastructure long-term
+
+- Document engineering decisions, standards, and workflows in a way that supports knowledge transfer to both clients and junior team members
+
+- Research and evaluate new technologies and advocate for tooling investments that benefit the firm
+
+- Train and mentor junior team members on engineering standards, pipeline design, and best practices
+
+- Participate in client-facing communication, including requirements gathering and progress updates
+
+- Flex support when capacity allows: contribute to analyst-side deliverables such as Power BI dashboard development, ad-hoc reporting, or data visualization. We're a lean team and value versatility
+
+Projects Include
+
+- ETL/ELT pipeline development and optimization
+
+- Data warehouse modeling (dimensional, medallion/lakehouse architectures)
+
+- Data integration across client systems such as CRM, ERP, marketing, and operational systems
+
+- Infrastructure setup across the modern data stack (ingestion, transformation, orchestration)
+
+- Implementations across platforms such as Microsoft Fabric, Databricks, and Snowflake, meeting clients where they are
+
+- Data modeling and deployment across medallion architecture layers (bronze, silver, gold)
+
+- Data quality frameworks and automated pipeline testing
+
+- Cloud infrastructure provisioning and cost optimization (Azure, AWS, GCP)
+
+- Technical documentation projects including data dictionaries, ER diagrams, lineage documentation, and metrics catalogs
+
+- Power BI semantic model development and dashboard support when business needs require it
+
+Qualifications
+
+- Bachelor's Degree in Computer Science, Engineering, Mathematics, or a related field
+
+- 2–5 years of relevant data engineering or software engineering experience
+
+- SQL Expert: complex query authoring, query optimization, stored procedures
+
+- Python Required: pipeline scripting, automation, data processing
+
+- Transformation Tools: dbt required; Spark experience a plus
+
+- Ingestion Tools: Fivetran, Airbyte, Rivery, Microsoft Fabric Data Factory, or similar
+
+- Orchestration: Airflow, Prefect, Azure Data Factory, Microsoft Fabric, or equivalent
+
+- Cloud Platforms: Azure (preferred), AWS, or GCP experience
+
+- Data Warehouses: Snowflake, BigQuery, Redshift, Microsoft Fabric, Azure Synapse, or equivalent
+
+- Version Control: Git required; branching strategies, pull requests, and code review workflows
+
+- Strong communication skills with the ability to translate technical concepts for non-technical stakeholders
+
+- Self-starter who thrives in a remote environment and can manage multiple client workstreams
+
+- Player-coach mindset: capable of leading projects while growing junior teammates
+
+- For certain client projects, there may be a need to be in person or for limited travel to client offices.
+
+- Intellectually curious about evolving data tooling, architecture patterns, and AI-augmented engineering
+
+NuView Analytics is an equal opportunity employer. We celebrate diverse perspectives and are committed to building an inclusive team.

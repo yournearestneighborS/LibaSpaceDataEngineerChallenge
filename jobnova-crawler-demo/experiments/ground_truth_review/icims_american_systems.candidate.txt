@@ -1,0 +1,49 @@
+Overview
+
+AMERICAN SYSTEMS is an employee-owned federal government contractor supporting national priority programs through our strategic solutions in the areas of Information Technology, Engineering & Analysis, Test & Evaluation, and Training.
+
+Responsibilities
+
+Position Description:The Data Engineer – Jr supports the design, development, and sustainment of data pipelines, data integration, and basic data infrastructure that enable analytics and AI/ML solutions for CD&I. This position focuses on ingesting, transforming, and preparing data from multiple USMC and DoW systems for use by analysts, data scientists, and operational stakeholders.
+
+Responsibilities:
+
+- Assist in building and maintaining pipelines to move and transform data from source systems into analytic data stores.
+
+- Implement basic data quality checks, validation routines, and data cleansing processes.
+
+- Support the integration of structured and semi-structured data sources relevant to capability development and experimentation.
+
+- Work with senior data engineers and analysts to understand data requirements and translate them into technical tasks.
+
+- Contribute to the documentation of data flows, schemas, and data dictionaries.
+
+- Implement basic data security and access controls in accordance with DoW/USMC policies and best practices.
+
+- Troubleshoot data pipeline issues and support operations and maintenance activities.
+
+Qualifications
+
+Required Qualifications:
+
+- Bachelor’s degree in Computer Science, Information Systems, Engineering, Data Science, or related field.
+
+- 0–3 years of experience in data engineering, database development, or related technical role.
+
+- Basic experience with SQL and at least one programming/scripting language (e.g., Python).
+
+- Familiarity with relational databases and concepts such as tables, views, indices, and joins.
+
+- Ability to work in a team environment and follow established engineering standards and practices.
+
+- Active TS/SCI Clearance
+
+Desired Qualifications:
+
+- Experience supporting DoW/USMC or other Federal customers.
+
+Pay Transparency Statement
+AMERICAN SYSTEMS is committed to pay transparency for our applicants and employee-owners. The salary range for this position is USD $110,000.00/Yr. - USD $125,000/Yr. Actual compensation will be determined based on several factors permitted by law. AMERICAN SYSTEMS provides for the welfare of its employees and their dependents through a comprehensive benefits program by offering healthcare benefits, paid leave, retirement plans, insurance programs, and education and training assistance.
+
+EEO Statement
+EEO Race/Sex/Disability Status/Veteran Status

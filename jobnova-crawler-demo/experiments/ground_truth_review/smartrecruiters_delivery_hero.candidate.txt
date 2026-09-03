@@ -1,0 +1,104 @@
+Company Description
+
+As the world’s pioneering local delivery platform, our mission is to deliver an amazing experience, fast, easy, and to your door. We operate in around 65 countries worldwide powered by tech, designed by people. As one of Europe’s largest tech platforms, headquartered in Berlin, Germany. Delivery Hero has been listed on the Frankfurt Stock Exchange since 2017 and is part of the MDAX stock market index. We enable creative minds to deliver solutions that create impact within our ecosystem. We move fast, take action and adapt. No matter where you're from or what you believe in, we build, we deliver, we lead. We are Delivery Hero.
+
+Job Description
+
+About this Opportunity
+
+We are on the lookout for talented Data Engineer I to join our Tech Foundations Vertical as part of our 2026 Tech Grad Program, on our journey to always deliver amazing experiences.
+
+Our Tech Grad Program offers you a unique environment for you to learn and develop your skills, and to contribute to the development of our cutting-edge tech solutions. You will have some of the most talented and experienced software engineers in the industry as mentors to help you ramp up, and a support group you can go to for help and connection.
+
+Our Engineering organization consists of over 1,500 talented engineers distributed across our major verticals. Our tech employees are divided into different teams across the following areas: Consumer Data Products, FinTech, Logistics, Pandora, Platform, Quick Commerce, and Vendor Tech. They work on a range of major topics from boosting customer acquisition and retention to creating efficient experiences for our vendors, building an excellent logistics ecosystem across the delivery lifecycle, providing financial empowerment to our stakeholders and much more.
+
+As a member of the Tech Foundation Team, you’ll support Delivery Hero’s rapid innovation and growth. You’ll work on foundational systems that enable faster feature development, security, and reliability across our global engineering community. Every enhancement you make will contribute to our teams' ability to build, scale, and deliver quality features—ultimately impacting millions of users worldwide.
+
+If you are an Engineering graduate looking for an opportunity to grow in the tech industry and make a difference, our Tech Graduate Program is for you! You can also visit our Early Careers @ Delivery Hero website for more information!
+
+What you need to be Successful
+
+To be eligible for our program, you must:
+
+-
+Have the right to live and work in Germany
+
+-
+Candidates within the EU are also eligible to apply as long as you meet the above criteria
+
+-
+Have (or be graduating from) a Bachelor’s or Master's degree in Computer Science, Software Engineering, Data Engineering, Data Science or a related field
+
+-
+If graduated, you may also have a maximum of 2 years of experience in similar job fields
+
+-
+Coding bootcamp graduates (recent/upcoming) are also eligible to apply and do not need to meet the degree requirement above; please apply if you have a minimum of 6-12 months’ internship/bootcamp experience
+
+-
+Have a good understanding of and direct experience with coding in relevant languages and technologies (see below), ideally from internships, bootcamps, or open-source projects
+
+-
+Be an analytical thinker and strong problem solver with a humble, inquisitive approach
+
+-
+Have good communication and collaboration skills
+
+-
+Be business fluent in English
+
+-
+Be excited about working in a fast-moving, agile company where we learn from our mistakes
+
+Technical skills we look for:
+
+-
+Data
+
+-
+Python, SQL, noSQL, cloud services (AWS), data warehousing (BigQuery, Redshift)
+
+Generally, we also expect your curiosity in learning/trying out new technologies.
+
+Who we are
+
+As the world’s pioneering local delivery platform, our mission is to deliver an amazing experience, fast, easy, and to your door. We operate in over 70+ countries worldwide, powered by tech, designed by people. As one of Europe’s largest tech platforms, headquartered in Berlin, Germany. Delivery Hero has been listed on the Frankfurt Stock Exchange since 2017 and is part of the MDAX stock market index. We enable creative minds to deliver solutions that create impact within our ecosystem. We move fast, take action and adapt. No matter where you're from or what you believe in, we build, we deliver, we lead. We are Delivery Hero.
+
+What’s in it for you
+
+Ensuring you and all our Heroes are looked after, happy, and healthy is always on the menu. Because if you’re in good shape, then we’re in good shape.
+
+-
+Make the most of our hybrid working model and join the team for face-to-face connection and collaboration in our beautiful Berlin campus 2 days a week
+
+-
+We offer 27 days holiday
+
+-
+We will support you in developing yourself and your career growth opportunities: 1.000 € Educational Budget, Language Courses, Parental Support, access to the Udemy Business platform to explore a variety of online courses
+
+-
+Get moving and release those wonderful, mind-boosting endorphins: Health Checkups, Mindfulness and Gym Subsidy
+
+-
+The power of getting together over some food is unrivalled. Here are a few ways to help you do that. All the yum: Digital Meal Vouchers, Food Vouchers, Corporate Discounts. Courses and access to Internal Housing Hub
+
+Ready to join our team? If you’re excited to grow, collaborate and be part of the world’s leading delivery platform, we’d love to hear from you. Apply today!
+
+We believe diversity and inclusion are key to creating not only an exciting product, but also an amazing customer and employee experience. Fostering this starts with hiring - therefore we do not discriminate on the basis of racial identities, religious beliefs, color, national origin, gender identities or expressions, sexual orientations, age, marital or disability statuses, or any other aspect that makes you, you.
+
+We encourage you to let us know if you need any accommodations or specific accessibility support to ensure a smooth interview experience—just let us know with an email to our Inclusion Officer at [email protected] it in your application.
+
+Severely disabled applicants with equal qualifications will be given preferential consideration.
+
+You're welcome to share your pronouns (he/she/they) right from the start so we can address you respectfully from our first contact.
+
+Additional Information
+
+We believe diversity and inclusion are key to creating not only an exciting product, but also an amazing customer and employee experience. Fostering this starts with hiring - therefore we do not discriminate on the basis of racial identities, religious beliefs, color, national origin, gender identities or expressions, sexual orientations, age, marital or disability statuses, or any other aspect that makes you, you.
+
+We encourage you to let us know if you need any accommodations or specific accessibility support to ensure a smooth interview experience—just let us know with an email to our Inclusion Officer at [email protected].
+
+Severely disabled applicants with equal qualifications will be given preferential consideration.
+
+You're welcome to share your pronouns (he/she/they) right from the start so we can address you respectfully from our first contact.

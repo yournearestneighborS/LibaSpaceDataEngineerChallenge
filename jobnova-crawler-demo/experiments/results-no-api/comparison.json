@@ -1,0 +1,44 @@
+[
+  {
+    "mode": "hybrid",
+    "pages": 10,
+    "avg_completeness_recall": 0.7,
+    "avg_content_precision": 0.6993,
+    "avg_accuracy_f1": 0.6996,
+    "avg_contamination_rate": 0.3007,
+    "avg_structure_recall": 0.5938,
+    "full_extraction_rate": 0.4,
+    "avg_latency_ms": 4.466,
+    "total_cost_usd": 0.0,
+    "cost_per_page_usd": 0.0,
+    "estimated_cost_100k_usd": 0.0
+  },
+  {
+    "mode": "llm_only",
+    "pages": 10,
+    "avg_completeness_recall": 0.0,
+    "avg_content_precision": 0.0,
+    "avg_accuracy_f1": 0.0,
+    "avg_contamination_rate": 1.0,
+    "avg_structure_recall": 0.0,
+    "full_extraction_rate": 0.0,
+    "avg_latency_ms": 0.402,
+    "total_cost_usd": 0.0,
+    "cost_per_page_usd": 0.0,
+    "estimated_cost_100k_usd": 0.0
+  },
+  {
+    "mode": "template_aware",
+    "pages": 10,
+    "avg_completeness_recall": 0.7,
+    "avg_content_precision": 0.6993,
+    "avg_accuracy_f1": 0.6996,
+    "avg_contamination_rate": 0.3007,
+    "avg_structure_recall": 0.5938,
+    "full_extraction_rate": 0.4,
+    "avg_latency_ms": 4.481,
+    "total_cost_usd": 0.0,
+    "cost_per_page_usd": 0.0,
+    "estimated_cost_100k_usd": 0.0
+  }
+]
