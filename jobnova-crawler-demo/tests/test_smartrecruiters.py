@@ -1,0 +1,99 @@
+import json
+import unittest
+
+from scrapy.http import Request, TextResponse
+
+from jobs.spiders.SmartRecruitersBase import SmartRecruitersBase
+
+
+class ExampleSmartRecruitersSpider(SmartRecruitersBase):
+    name = "ExampleSmartRecruiters"
+    company_name = "Example Company"
+    company_identifier = "ExampleCompany"
+
+
+def json_response(url, payload):
+    request = Request(url=url)
+    return TextResponse(
+        url=url,
+        request=request,
+        body=json.dumps(payload).encode("utf-8"),
+        encoding="utf-8",
+        headers={"Content-Type": "application/json"},
+    )
+
+
+class SmartRecruitersBaseTests(unittest.TestCase):
+    def setUp(self):
+        self.spider = ExampleSmartRecruitersSpider(max_age_days="all")
+
+    def test_list_response_schedules_details_and_next_page(self):
+        payload = {
+            "totalFound": 3,
+            "content": [
+                {"id": "101", "name": "Data Engineer", "language": {"code": "en"}},
+                {"id": "102", "name": "Analyst", "language": {"code": "en-US"}},
+            ],
+        }
+        response = json_response("https://api.smartrecruiters.com/list", payload)
+
+        requests = list(self.spider.parse(response, offset=0))
+
+        self.assertEqual(3, len(requests))
+        self.assertTrue(requests[0].url.endswith("/postings/101"))
+        self.assertTrue(requests[1].url.endswith("/postings/102"))
+        self.assertIn("offset=2", requests[2].url)
+
+    def test_detail_response_maps_required_schema(self):
+        summary = {"id": "101", "name": "Fallback title"}
+        payload = {
+            "id": "101",
+            "name": "Data Engineer",
+            "company": {"name": "API Company"},
+            "postingUrl": "https://jobs.smartrecruiters.com/ExampleCompany/101-data-engineer",
+            "location": {
+                "city": "New York",
+                "region": "New York",
+                "country": "us",
+                "remote": True,
+            },
+            "function": {"label": "Engineering"},
+            "department": {"label": "Data Platform"},
+            "language": {"code": "en"},
+        }
+        response = json_response("https://api.smartrecruiters.com/postings/101", payload)
+
+        items = list(self.spider.parse_posting(response, summary))
+
+        self.assertEqual(1, len(items))
+        self.assertEqual(
+            {
+                "internalType": "",
+                "category_name": "",
+                "company_name": "Example Company",
+                "job_title": "Data Engineer",
+                "job_href": "https://jobs.smartrecruiters.com/ExampleCompany/101-data-engineer",
+                "job_city_des": "New York, New York, us (Remote)",
+                "details_job": "Engineering - Data Platform",
+            },
+            dict(items[0]),
+        )
+
+    def test_non_english_posting_is_skipped(self):
+        response = json_response(
+            "https://api.smartrecruiters.com/postings/101",
+            {"id": "101", "name": "Ingenieur", "language": {"code": "fr"}},
+        )
+        self.assertEqual([], list(self.spider.parse_posting(response, {"id": "101"})))
+
+    def test_full_location_drops_empty_comma_sections(self):
+        location = {"fullLocation": "Budapest, , Hungary"}
+        self.assertEqual("Budapest, Hungary", self.spider._location_text(location))
+
+    def test_malformed_list_response_is_ignored(self):
+        response = json_response("https://api.smartrecruiters.com/list", {"content": None})
+        self.assertEqual([], list(self.spider.parse(response)))
+
+
+if __name__ == "__main__":
+    unittest.main()
